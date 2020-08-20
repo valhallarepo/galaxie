@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
 
 export interface IBaseService<T> {
   get(data: T): Observable<T>;
