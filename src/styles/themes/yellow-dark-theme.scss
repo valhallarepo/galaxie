@@ -1,0 +1,19 @@
+// -----------------------------------------------------------------------------------------------------
+// @ Define a yellow dark theme
+// -----------------------------------------------------------------------------------------------------
+
+// Define the primary, accent and warn palettes
+$yellow-dark-theme-primary-palette: mat-palette($mat-amber);
+$yellow-dark-theme-accent-palette: mat-palette($mat-blue-grey, A200, A100, A400);
+$yellow-dark-theme-warn-palette: mat-palette($mat-red);
+
+// Create the Material theme object
+$yellow-dark-theme: mat-dark-theme($yellow-dark-theme-primary-palette, $yellow-dark-theme-accent-palette, $yellow-dark-theme-warn-palette);
+
+// Add ".theme-yellow-dark" class to the body to activate this theme.
+// Class name must start with "theme-" !!!
+.theme-yellow-dark {
+
+    // Generate the Angular Material theme
+    @include angular-material-theme($yellow-dark-theme);
+}

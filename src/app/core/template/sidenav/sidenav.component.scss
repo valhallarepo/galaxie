@@ -1,0 +1,42 @@
+.sidenav {
+    min-width: 280px;
+}
+
+.sidenav-title {
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+form {
+    padding: 0 16px;
+}
+
+.sidenav-container {
+    width: 100%;
+    top: 64px;
+    bottom: 50px;
+    position: fixed;
+}
+
+/* Media query */
+@media screen and (max-width: 768px) {
+    .sidenav {
+        min-width: 50%;
+        max-width: 50%;
+    }
+    .sidenav-container {
+        top: 56px;
+    }
+}
+
+/* Media query */
+@media screen and (max-width: 400px) {
+    .sidenav {
+        min-width: 70%;
+        max-width: 70%;
+    }
+    .sidenav-container {
+        top: 56px;
+    }
+}

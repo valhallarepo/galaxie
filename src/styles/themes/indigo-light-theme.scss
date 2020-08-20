@@ -1,0 +1,19 @@
+// -----------------------------------------------------------------------------------------------------
+// @ Define the indigo light theme
+// -----------------------------------------------------------------------------------------------------
+
+// Define the primary, accent and warn palettes
+$indigo-light-primary-palette: mat-palette($mat-indigo);
+$indigo-light-accent-palette: mat-palette($mat-pink, A200, A100, A400);
+$indigo-light-warn-palette: mat-palette($mat-red);
+
+// Create the Material theme object
+$theme: mat-light-theme($indigo-light-primary-palette, $indigo-light-accent-palette, $indigo-light-warn-palette);
+
+// Add ".theme-indigo-light" class to the body to activate this theme.
+// Class name must start with "theme-" !!!
+.theme-indigo-light {
+
+    // Create an Angular Material theme from the $theme map
+    @include angular-material-theme($theme);
+}

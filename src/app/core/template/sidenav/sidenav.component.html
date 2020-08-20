@@ -1,0 +1,33 @@
+<app-header [sidenavRef]="sidenav"></app-header>
+
+<mat-sidenav-container class="sidenav-container">
+
+  <mat-sidenav #sidenav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+    class="sidenav">
+
+    <div class="sidenav-title">
+      <span>sidenav works!</span>
+    </div>
+
+    <app-sidenav-list></app-sidenav-list>
+
+    <div class="sidenav-title">
+      <span>Temas</span>
+    </div>
+
+    <form [formGroup]="form">
+      <mat-radio-group formControlName="colorTheme" (change)="themeChange($event)" fxLayout="column"
+        fxLayoutAlign="space-around start">
+        <mat-radio-button value="theme-blue-dark">Blue Dark</mat-radio-button>
+        <mat-radio-button value="theme-indigo-light">Indigo Light</mat-radio-button>
+        <mat-radio-button value="theme-pink-dark">Pink Dark</mat-radio-button>
+        <mat-radio-button value="theme-yellow-dark">Yellow Dark</mat-radio-button>
+      </mat-radio-group>
+    </form>
+  </mat-sidenav>
+
+  <router-outlet></router-outlet>
+
+</mat-sidenav-container>
+
+<app-footer></app-footer>

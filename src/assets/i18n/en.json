@@ -1,0 +1,26 @@
+{
+  "APP": {
+    "SIDEBAR": {
+      "TITLES": {
+        "HOME": "Home Page",
+        "NOT_MY_HOME": "Table Screen"
+      }
+    },
+    "PAGES": {
+      "HOME": {
+        "TITLE": "This is the Home Page!"
+      },
+      "NOT_MY_HOME": {
+        "TITLE": "Results Table",
+        "TABLE": {
+          "COLUMNS": {
+            "USER_ID": "User Id",
+            "POST_ID": "Post Id",
+            "POST_TITLE": "Post Title",
+            "POST_CONTENT": "Post Body"
+          }
+        }
+      }
+    }
+  }
+}

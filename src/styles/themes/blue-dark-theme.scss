@@ -1,0 +1,19 @@
+// -----------------------------------------------------------------------------------------------------
+// @ Define a blue dark theme
+// -----------------------------------------------------------------------------------------------------
+
+// Define the primary, accent and warn palettes
+$blue-dark-theme-primary-palette: mat-palette($mat-blue);
+$blue-dark-theme-accent-palette: mat-palette($mat-blue-gray, A200, A100, A400);
+$blue-dark-theme-warn-palette: mat-palette($mat-red);
+
+// Create the Material theme object
+$blue-dark-theme: mat-dark-theme($blue-dark-theme-primary-palette, $blue-dark-theme-accent-palette, $blue-dark-theme-warn-palette);
+
+// Add ".theme-blue-dark" class to the body to activate this theme.
+// Class name must start with "theme-" !!!
+.theme-blue-dark {
+
+    // Generate the Angular Material theme
+    @include angular-material-theme($blue-dark-theme);
+}
