@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { MatPaginatorIntl } from '@angular/material/paginator';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -11,6 +12,7 @@ import { HeaderComponent } from './core/template/header/header.component';
 import { SidenavListComponent } from './core/template/sidenav/components/sidenav-list/sidenav-list.component';
 import { SidenavComponent } from './core/template/sidenav/sidenav.component';
 import { HomeComponent } from './pages/home/home.component';
+import { customizeMatPaginatorIntl } from './shared/components/customize-mat-paginator';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -36,7 +38,9 @@ import { SharedModule } from './shared/shared.module';
       isolate: false
     })
   ],
-  providers: [],
+  providers: [
+    { provide: MatPaginatorIntl, useValue: customizeMatPaginatorIntl() }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
