@@ -1,8 +1,15 @@
-.sidenav {
+.mat-sidenav-container {
+    width: 100%;
+    top: 64px;
+    bottom: 50px;
+    position: fixed;
+}
+
+.mat-sidenav {
     min-width: 280px;
 }
 
-.sidenav-title {
+.title {
     padding: 16px;
     font-size: 16px;
     font-weight: 500;
@@ -12,11 +19,8 @@ form {
     padding: 0 16px;
 }
 
-.sidenav-container {
-    width: 100%;
-    top: 64px;
-    bottom: 50px;
-    position: fixed;
+.main-container {
+    margin: 16px;
 }
 
 /* Media query */

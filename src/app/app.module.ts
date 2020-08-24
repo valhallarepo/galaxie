@@ -7,10 +7,11 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { httpLoaderFactory } from './core/http-loader-factory';
-import { FooterComponent } from './core/template/footer/footer.component';
-import { HeaderComponent } from './core/template/header/header.component';
-import { SidenavListComponent } from './core/template/sidenav/components/sidenav-list/sidenav-list.component';
-import { SidenavComponent } from './core/template/sidenav/sidenav.component';
+import { FooterComponent } from './core/template/components/footer/footer.component';
+import { HeaderComponent } from './core/template/components/header/header.component';
+import { SidenavListComponent } from './core/template/components/sidenav/components/sidenav-list/sidenav-list.component';
+import { SidenavComponent } from './core/template/components/sidenav/sidenav.component';
+import { TemplateComponent } from './core/template/template.component';
 import { HomeComponent } from './pages/home/home.component';
 import { customizeMatPaginatorIntl } from './shared/components/customize-mat-paginator';
 import { SharedModule } from './shared/shared.module';
@@ -22,6 +23,7 @@ import { SharedModule } from './shared/shared.module';
     FooterComponent,
     SidenavComponent,
     SidenavListComponent,
+    TemplateComponent,
     HomeComponent
   ],
   imports: [

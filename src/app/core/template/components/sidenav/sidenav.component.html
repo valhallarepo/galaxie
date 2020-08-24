@@ -1,17 +1,14 @@
-<app-header [sidenavRef]="sidenav"></app-header>
+<mat-sidenav-container>
 
-<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #matSidenav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches">
 
-  <mat-sidenav #sidenav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
-    class="sidenav">
-
-    <div class="sidenav-title">
+    <div class="title">
       <span>sidenav works!</span>
     </div>
 
     <app-sidenav-list></app-sidenav-list>
 
-    <div class="sidenav-title">
+    <div class="title">
       <span>Temas</span>
     </div>
 
@@ -26,8 +23,8 @@
     </form>
   </mat-sidenav>
 
-  <router-outlet></router-outlet>
+  <div class="main-container">
+    <router-outlet></router-outlet>
+  </div>
 
 </mat-sidenav-container>
-
-<app-footer></app-footer>

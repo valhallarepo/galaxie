@@ -1,9 +1,10 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatRadioChange } from '@angular/material/radio';
-import { AppConfig } from '../../app.config';
-import { ThemeProvider } from '../../theme.provider';
+import { MatSidenav } from '@angular/material/sidenav';
+import { AppConfig } from '../../../app.config';
+import { ThemeProvider } from '../../../theme.provider';
 
 @Component({
   selector: 'app-sidenav',
@@ -11,6 +12,8 @@ import { ThemeProvider } from '../../theme.provider';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnInit, AfterViewInit {
+
+  @ViewChild(MatSidenav) matSidenav: MatSidenav;
 
   public mobileQuery: MediaQueryList;
 
