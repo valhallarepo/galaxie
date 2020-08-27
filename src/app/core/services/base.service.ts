@@ -1,41 +1,23 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
-import { environment } from '../../../environments/environment';
 import { IRequest } from '../model/irequest';
 import { IResponse } from '../model/iresponse';
 import { IBaseService } from './ibase.service';
 
 export class BaseService<S extends IRequest, T extends IResponse> implements IBaseService<S, T> {
 
-  private resource: string;
-  private http: HttpClient;
-  private uri: string;
+  private _http: HttpClient;
+  private _baseURL: string;
+  private _resource: string;
 
-  constructor(resource: string, http: HttpClient) {
-    this.resource = resource;
-    this.http = http;
-    this.uri = `${this.getServerURL()}/${this.getResource()}`;
+  constructor(http: HttpClient, baseURL: string, resource: string) {
+    this._http = http;
+    this._baseURL = baseURL;
+    this._resource = resource;
   }
 
-  protected getResource(): string {
-    return this.resource;
-  }
-
-  protected getHttp(): HttpClient {
-    return this.http;
-  }
-
-  protected getServerURL(): string {
-    return `${environment.API_SERVER}`;
-  }
-
-  protected getHttpHeaderOptions(): any {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    return httpOptions;
+  protected get http(): HttpClient {
+    return this._http;
   }
 
   /**
@@ -43,12 +25,7 @@ export class BaseService<S extends IRequest, T extends IResponse> implements IBa
    * @param data 
    */
   get(data: S): Observable<T> {
-    const options = this.getHttpHeaderOptions();
-    options.params = new HttpParams();
-    options.params = options.params.set('api_key', environment.API_KEY);
-    options.params = options.params.set('language', 'pt-BR');
-
-    return this.getHttp().get<T>(`${this.uri}/${data.id}`, options as Object);
+    return this._http.get<T>(`${this._baseURL}/${this._resource}/${data.id}`);
   }
 
   /**
@@ -56,10 +33,7 @@ export class BaseService<S extends IRequest, T extends IResponse> implements IBa
    * @param data 
    */
   all(data?: S): Observable<T> {
-    const options = this.getHttpHeaderOptions();
-    options.params = new HttpParams();
-    options.params = options.params.set('api_key', environment.API_KEY);
-    options.params = options.params.set('language', 'pt-BR');
+    const options = { params: new HttpParams() };
 
     if (data) {
       Object.keys(data).forEach(key => {
@@ -69,7 +43,7 @@ export class BaseService<S extends IRequest, T extends IResponse> implements IBa
       });
     }
 
-    return this.getHttp().get<T>(`${this.uri}`, options as Object);
+    return this._http.get<T>(`${this._baseURL}/${this._resource}`, options as Object);
   }
 
   /**
@@ -80,16 +54,13 @@ export class BaseService<S extends IRequest, T extends IResponse> implements IBa
    * @param data 
    */
   save(data: S): Observable<T> {
-    const options = this.getHttpHeaderOptions();
-    options.params = new HttpParams();
-
     // POST
     if (!data.id) {
-      return this.getHttp().post<T>(this.uri, data, options as Object);
+      return this._http.post<T>(`${this._baseURL}/${this._resource}`, data);
     }
 
     // PUT
-    return this.getHttp().put<T>(`${this.uri}/${data.id}`, data, options as Object);
+    return this._http.put<T>(`${this._baseURL}/${this._resource}/${data.id}`, data);
   }
 
   /**
@@ -98,18 +69,7 @@ export class BaseService<S extends IRequest, T extends IResponse> implements IBa
    * @param data 
    */
   patch(id: number, data: S): Observable<T> {
-    const options = this.getHttpHeaderOptions();
-    options.params = new HttpParams();
-
-    if (data) {
-      Object.keys(data).forEach(keyP => {
-        if ((data[keyP] !== null && data[keyP] !== undefined) || typeof data[keyP] === 'number') {
-          options.params = options.params.set(keyP, data[keyP]);
-        }
-      });
-    }
-
-    return this.getHttp().patch<T>(`${this.uri}/${id}`, data, options as Object);
+    return this._http.patch<T>(`${this._baseURL}/${this._resource}/${id}`, data);
   }
 
   /**
@@ -117,14 +77,7 @@ export class BaseService<S extends IRequest, T extends IResponse> implements IBa
    * @param data 
    */
   remove(id: number | string): Observable<T> {
-    const options = this.getHttpHeaderOptions();
-    options.params = new HttpParams();
-
-    if (id) {
-      return this.getHttp().delete<T>(`${this.uri}/${id}`, options as Object);
-    }
-
-    return;
+    return this._http.delete<T>(`${this._baseURL}/${this._resource}/${id}`);
   }
 
 }

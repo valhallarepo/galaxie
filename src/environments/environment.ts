@@ -4,7 +4,13 @@
 
 export const environment = {
   production: false,
-  API_SERVER: 'https://jsonplaceholder.typicode.com'
+  BACKENDS: {
+    PRIMARY: 'https://jsonplaceholder.typicode.com',
+    SECONDARY: '',
+    TERTIARY: ''
+    // ...
+  },
+  API_KEY: '7866a297c8f21ea63eb2756959872310'
 };
 
 /*

@@ -4,11 +4,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { httpLoaderFactory } from '../core/http-loader-factory';
+import { Interceptor } from '../core/http/application-http-interceptor';
 import { MaterialModule } from '../core/material.module';
 
 @NgModule({
     declarations: [],
     imports: [
+        Interceptor,
         FlexLayoutModule,
         FormsModule,
         HttpClientModule,
