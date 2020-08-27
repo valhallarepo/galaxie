@@ -3,8 +3,8 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { httpLoaderFactory } from '../core/http-loader-factory';
 import { Interceptor } from '../core/http/application-http-interceptor';
+import { i18nLoaderFactory } from '../core/http/i18n-loader-factory';
 import { MaterialModule } from '../core/material.module';
 
 @NgModule({
@@ -19,7 +19,7 @@ import { MaterialModule } from '../core/material.module';
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,
-                useFactory: httpLoaderFactory,
+                useFactory: i18nLoaderFactory,
                 deps: [HttpClient]
             },
             isolate: false
