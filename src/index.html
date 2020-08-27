@@ -1,15 +1,22 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>Galaxie</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- 
+    Tenta acessar o CDN oficial, caso não consiga, 
+    acessa o CDN interno través do atributo 'onerror' do próprio HTML.
+  -->
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans" onerror="this.href='\/\/fonts.googleapis.com/css?family=Open+Sans'" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons" onerror="this.href='\/\/fonts.googleapis.com/icon?family=Material+Icons'" />
+
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
+
 <body class="mat-typography">
   <app-root></app-root>
 </body>
-</html>
