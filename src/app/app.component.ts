@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { takeUntilDestroy } from 'src/app/core/take-until-destroy';
+import { takeUntilDestroy } from '../app/core/take-until-destroy';
 import { ThemeProvider } from './core/theme.provider';
 
 @Component({
