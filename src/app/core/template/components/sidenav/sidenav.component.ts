@@ -3,8 +3,8 @@ import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatRadioChange } from '@angular/material/radio';
 import { MatSidenav } from '@angular/material/sidenav';
-import { AppConfig } from '../../../../shared/app.config';
-import { ThemeProvider } from '../../../theme.provider';
+import { AppConfig } from '../../../../app.config';
+import { ThemeProvider } from '../../../tools/theme.provider';
 
 @Component({
   selector: 'app-sidenav',

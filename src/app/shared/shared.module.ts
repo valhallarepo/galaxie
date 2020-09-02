@@ -3,9 +3,9 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { Interceptor } from '../core/http/application-http-interceptor';
-import { i18nLoaderFactory } from '../core/http/i18n-loader-factory';
-import { MaterialModule } from '../core/material.module';
+import { Interceptor } from '../core/tools/application-http-interceptor';
+import { i18nLoaderFactory } from '../core/tools/i18n-loader-factory';
+import { MaterialModule } from './modules/material.module';
 
 @NgModule({
     declarations: [],

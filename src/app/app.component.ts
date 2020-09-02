@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { takeUntilDestroy } from '../app/core/take-until-destroy';
-import { ThemeProvider } from './core/theme.provider';
+import { ThemeProvider } from './core/tools/theme.provider';
+import { takeUntilDestroy } from './core/tools/take-until-destroy';
 
 @Component({
   selector: 'app-root',
