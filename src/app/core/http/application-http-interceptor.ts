@@ -11,7 +11,7 @@ export class ApplicationHttpInterceptor implements HttpInterceptor {
 
         const dupReq = req.clone({
             headers: req.headers.set('Content-Type', 'application/json')
-                .append('api_key', environment.API_KEY)
+                .append('api_key', environment.backends.primary.api_key)
                 .append('language', 'pt-BR')
         });
 
