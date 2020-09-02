@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
-import { IRequest } from '../model/irequest';
-import { IResponse } from '../model/iresponse';
+import { IRequest } from '../models/irequest';
+import { IResponse } from '../models/iresponse';
 import { IBaseService } from './ibase.service';
 
 export class BaseService<S extends IRequest, T extends IResponse> implements IBaseService<S, T> {
