@@ -21,18 +21,20 @@ export class BaseService<S extends IRequest, T extends IResponse> implements IBa
   }
 
   /**
-   * Implementação do verbo GET para a recuperação de registro único.
+   * Implementação do verbo DELETE
+   * Exclusão de um registro com base no 'ID' do registro.
    * @param data 
    */
-  get(data: S): Observable<T> {
-    return this._http.get<T>(`${this._baseURL}/${this._resource}/${data.id}`);
+  delete(id: number | string): Observable<T> {
+    return this._http.delete<T>(`${this._baseURL}/${this._resource}/${id}`);
   }
 
   /**
-   * Implementação do verbo GET para a recuperação de múltiplos registros.
+   * Implementação do verbo GET.
+   * Recuperação de registros com base nos fitros informados.
    * @param data 
    */
-  all(data?: S): Observable<T> {
+  private find(data?: S) {
     const options = { params: new HttpParams() };
 
     if (data) {
@@ -47,37 +49,46 @@ export class BaseService<S extends IRequest, T extends IResponse> implements IBa
   }
 
   /**
-   * Implementação dos verbos POST e PUT.
-   * 
-   * POST: Novo registro, o ID não deve ser submetido na requisição.
-   * PUT:  Atualização completa do registro, o ID deve ser submetido na requisição.
+   * Implementação do verbo GET.
+   * Recuperação de registros com base no 'ID' ou nos filtros informados.
    * @param data 
+   * @param id 
    */
-  save(data: S): Observable<T> {
-    // POST
-    if (!data.id) {
-      return this._http.post<T>(`${this._baseURL}/${this._resource}`, data);
+  get(id?: number | string, data?: S): Observable<T> {
+
+    if (id) {
+      return this._http.get<T>(`${this._baseURL}/${this._resource}/${id}`);
     }
 
-    // PUT
-    return this._http.put<T>(`${this._baseURL}/${this._resource}/${data.id}`, data);
+    return this.find(data);
   }
 
   /**
-   * Implementação do verbo PATCH para atualização parcial do registro, o ID deve ser submetido na requisição.
+   * Implementação do verbo POST.
+   * Criação de um novo registro, o 'ID' NÃO deve ser submetido na requisição.
+   * @param data 
+   */
+  post(data: S): Observable<T> {
+    return this._http.post<T>(`${this._baseURL}/${this._resource}`, data);
+  }
+
+  /**
+   * Implementação do verbo PATCH.
+   * Atualização parcial do registro, o 'ID' DEVE ser submetido na requisição.
    * @param id 
    * @param data 
    */
-  patch(id: number, data: S): Observable<T> {
+  patch(id: number | string, data: S): Observable<T> {
     return this._http.patch<T>(`${this._baseURL}/${this._resource}/${id}`, data);
   }
 
   /**
-   * Implementação do verbo DELETE para a deleção de um registro.
+   * Implementação do verbo PUT.
+   * Atualização completa do registro, o 'ID' deve ser submetido na requisição.
    * @param data 
    */
-  remove(id: number | string): Observable<T> {
-    return this._http.delete<T>(`${this._baseURL}/${this._resource}/${id}`);
+  put(id: number | string, data: S): Observable<T> {
+    return this._http.put<T>(`${this._baseURL}/${this._resource}/${id}`, data);
   }
 
 }
