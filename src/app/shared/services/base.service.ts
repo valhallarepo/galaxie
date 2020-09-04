@@ -1,16 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 
-export interface IBaseService<S, T> {
-
-  delete(id: number | string): Observable<T>;
-  get(id?: number | string, data?: S): Observable<T>;
-  patch(id: number | string, data: S): Observable<T>;
-  put(id: number | string, data: S): Observable<T>;
-
-}
-
-export class BaseService<S, T> implements IBaseService<S, T> {
+export class BaseService<Req, Resp> {
 
   private _http: HttpClient;
   private _baseURL: string;
@@ -31,8 +22,8 @@ export class BaseService<S, T> implements IBaseService<S, T> {
    * Exclusão de um registro com base no 'ID' do registro.
    * @param data 
    */
-  delete(id: number | string): Observable<T> {
-    return this._http.delete<T>(`${this._baseURL}/${this._resource}/${id}`);
+  delete(id: number | string): Observable<Resp> {
+    return this._http.delete<Resp>(`${this._baseURL}/${this._resource}/${id}`);
   }
 
   /**
@@ -40,7 +31,7 @@ export class BaseService<S, T> implements IBaseService<S, T> {
    * Recuperação de registros com base nos fitros informados.
    * @param data 
    */
-  private find(data?: S) {
+  private find(data?: Req) {
     const options = { params: new HttpParams() };
 
     if (data) {
@@ -51,7 +42,7 @@ export class BaseService<S, T> implements IBaseService<S, T> {
       });
     }
 
-    return this._http.get<T>(`${this._baseURL}/${this._resource}`, options as Object);
+    return this._http.get<Resp>(`${this._baseURL}/${this._resource}`, options as Object);
   }
 
   /**
@@ -60,10 +51,10 @@ export class BaseService<S, T> implements IBaseService<S, T> {
    * @param data 
    * @param id 
    */
-  get(id?: number | string, data?: S): Observable<T> {
+  get(id?: number | string, data?: Req): Observable<Resp> {
 
     if (id) {
-      return this._http.get<T>(`${this._baseURL}/${this._resource}/${id}`);
+      return this._http.get<Resp>(`${this._baseURL}/${this._resource}/${id}`);
     }
 
     return this.find(data);
@@ -74,8 +65,8 @@ export class BaseService<S, T> implements IBaseService<S, T> {
    * Criação de um novo registro, o 'ID' NÃO deve ser submetido na requisição.
    * @param data 
    */
-  post(data: S): Observable<T> {
-    return this._http.post<T>(`${this._baseURL}/${this._resource}`, data);
+  post(data: Req): Observable<Resp> {
+    return this._http.post<Resp>(`${this._baseURL}/${this._resource}`, data);
   }
 
   /**
@@ -84,8 +75,8 @@ export class BaseService<S, T> implements IBaseService<S, T> {
    * @param id 
    * @param data 
    */
-  patch(id: number | string, data: S): Observable<T> {
-    return this._http.patch<T>(`${this._baseURL}/${this._resource}/${id}`, data);
+  patch(id: number | string, data: Req): Observable<Resp> {
+    return this._http.patch<Resp>(`${this._baseURL}/${this._resource}/${id}`, data);
   }
 
   /**
@@ -93,8 +84,8 @@ export class BaseService<S, T> implements IBaseService<S, T> {
    * Atualização completa do registro, o 'ID' deve ser submetido na requisição.
    * @param data 
    */
-  put(id: number | string, data: S): Observable<T> {
-    return this._http.put<T>(`${this._baseURL}/${this._resource}/${id}`, data);
+  put(id: number | string, data: Req): Observable<Resp> {
+    return this._http.put<Resp>(`${this._baseURL}/${this._resource}/${id}`, data);
   }
 
 }
