@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { Interceptor } from '../core/tools/application-http-interceptor';
 import { i18nLoaderFactory } from '../core/tools/i18n-loader-factory';
-import { MaterialModule } from './modules/material.module';
+import { MaterialModule } from './material.module';
 
 @NgModule({
     declarations: [],

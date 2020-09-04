@@ -1,10 +1,16 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
-import { IRequest } from '../models/irequest';
-import { IResponse } from '../models/iresponse';
-import { IBaseService } from './ibase.service';
 
-export class BaseService<S extends IRequest, T extends IResponse> implements IBaseService<S, T> {
+export interface IBaseService<S, T> {
+
+  delete(id: number | string): Observable<T>;
+  get(id?: number | string, data?: S): Observable<T>;
+  patch(id: number | string, data: S): Observable<T>;
+  put(id: number | string, data: S): Observable<T>;
+
+}
+
+export class BaseService<S, T> implements IBaseService<S, T> {
 
   private _http: HttpClient;
   private _baseURL: string;
