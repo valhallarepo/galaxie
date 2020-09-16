@@ -4,7 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatRadioChange } from '@angular/material/radio';
 import { MatSidenav } from '@angular/material/sidenav';
 import { AppConfig } from '../../../../app.config';
-import { ThemeProvider } from '../../../tools/theme.provider';
+import { ThemeEngineHelper } from '../../../../shared/helpers/theme-engine-helper';
 
 @Component({
   selector: 'app-sidenav',
@@ -22,7 +22,7 @@ export class SidenavComponent implements OnInit, AfterViewInit {
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
     private media: MediaMatcher,
-    private themeProvider: ThemeProvider) {
+    private themeEngine: ThemeEngineHelper) {
     this.mobileQuery = this.media.matchMedia('(max-width: 768px)');
     this.mobileQuery.addListener(() => this.changeDetectorRef.detectChanges());
   }
@@ -33,7 +33,7 @@ export class SidenavComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      this.themeProvider.setGlobalTheme(AppConfig.DEFAULT_THEME);
+      this.themeEngine.setGlobalTheme(AppConfig.DEFAULT_THEME);
       this.form.get('colorTheme').setValue(AppConfig.DEFAULT_THEME);
     });
   }
@@ -45,7 +45,7 @@ export class SidenavComponent implements OnInit, AfterViewInit {
   }
 
   themeChange($event: MatRadioChange) {
-    this.themeProvider.setGlobalTheme($event.value);
+    this.themeEngine.setGlobalTheme($event.value);
   }
 
 }

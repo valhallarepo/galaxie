@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ThemeProvider {
+export class ThemeEngineHelper {
 
   constructor() { }
 

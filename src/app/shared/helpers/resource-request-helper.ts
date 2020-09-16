@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 
-export class BaseService<Req, Resp> {
+export class ResourceRequestHelper<Req, Resp> {
 
   private _http: HttpClient;
   private _baseURL: string;

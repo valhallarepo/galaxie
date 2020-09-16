@@ -1,6 +1,6 @@
 import { MatPaginatorIntl } from '@angular/material/paginator';
 
-export function customizeMatPaginatorIntl() {
+export function customMatPaginatorIntl() {
 
     const paginator = new MatPaginatorIntl();
 

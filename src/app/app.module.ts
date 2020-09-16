@@ -6,13 +6,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FooterComponent } from './core/template/components/footer/footer.component';
-import { HeaderComponent } from './core/template/components/header/header.component';
-import { SidenavListComponent } from './core/template/components/sidenav/components/sidenav-list/sidenav-list.component';
-import { SidenavComponent } from './core/template/components/sidenav/sidenav.component';
-import { TemplateComponent } from './core/template/template.component';
-import { customizeMatPaginatorIntl } from './core/tools/customize-mat-paginator';
-import { i18nLoaderFactory } from './core/tools/i18n-loader-factory';
+import { customMatPaginatorIntl } from './internal/custom-mat-paginator';
+import { i18nLoaderFactory } from './internal/i18n-loader-factory';
+import { FooterComponent } from './layouts/main-layout/components/footer/footer.component';
+import { HeaderComponent } from './layouts/main-layout/components/header/header.component';
+import { SidenavListComponent } from './layouts/main-layout/components/sidenav/components/sidenav-list/sidenav-list.component';
+import { SidenavComponent } from './layouts/main-layout/components/sidenav/sidenav.component';
+import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SharedModule } from './shared/shared.module';
 
@@ -23,7 +23,7 @@ import { SharedModule } from './shared/shared.module';
     FooterComponent,
     SidenavComponent,
     SidenavListComponent,
-    TemplateComponent,
+    MainLayoutComponent,
     HomeComponent
   ],
   imports: [
@@ -41,7 +41,7 @@ import { SharedModule } from './shared/shared.module';
     })
   ],
   providers: [
-    { provide: MatPaginatorIntl, useValue: customizeMatPaginatorIntl() }
+    { provide: MatPaginatorIntl, useValue: customMatPaginatorIntl() }
   ],
   bootstrap: [AppComponent]
 })
