@@ -8,11 +8,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { customMatPaginatorIntl } from './internal/custom-mat-paginator';
 import { i18nLoaderFactory } from './internal/i18n-loader-factory';
-import { FooterComponent } from './layouts/main-layout/components/footer/footer.component';
-import { HeaderComponent } from './layouts/main-layout/components/header/header.component';
-import { SidenavListComponent } from './layouts/main-layout/components/sidenav/components/sidenav-list/sidenav-list.component';
-import { SidenavComponent } from './layouts/main-layout/components/sidenav/sidenav.component';
-import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+import { FooterComponent } from './layouts/main/components/footer/footer.component';
+import { HeaderComponent } from './layouts/main/components/header/header.component';
+import { SidenavListComponent } from './layouts/main/components/sidenav/components/sidenav-list/sidenav-list.component';
+import { SidenavComponent } from './layouts/main/components/sidenav/sidenav.component';
+import { MainLayoutComponent } from './layouts/main/main-layout.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SharedModule } from './shared/shared.module';
 
