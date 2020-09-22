@@ -96,7 +96,14 @@
             ],
             "scripts": [],
             "fileReplacements": [],
-            "codeCoverage": true
+            "codeCoverage": true,
+            "codeCoverageExclude": [
+              "**/*.service.ts",
+              "/src/app/app.component.ts",
+              "/src/app/internal/**",
+              "/src/app/layouts/**",
+              "/src/app/shared/helpers/**"
+            ]
           }
         },
         "lint": {
