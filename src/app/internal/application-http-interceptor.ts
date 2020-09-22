@@ -2,7 +2,6 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HTTP_INTERCEPTORS
 import { Injectable, NgModule } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { environment } from '../../environments/environment';
 
 @Injectable()
 export class ApplicationHttpInterceptor implements HttpInterceptor {
@@ -10,19 +9,17 @@ export class ApplicationHttpInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
         const dupReq = req.clone({
-            headers: req.headers.set('Content-Type', 'application/json')
-                .append('api_key', environment.backends.primary.api_key)
-                .append('language', 'pt-BR')
+            // Adicionar headers comuns à todas as requisições
+            // headers: req.headers.append('Content-Type', 'application/json')
         });
 
-        return next.handle(dupReq).pipe(catchError(this.handleError({})));
+        return next.handle(dupReq || req).pipe(catchError(this.handleError()));
     }
 
     /**
      * Trata as requisições HTTP que falham
-     * @param result - optional value to return as the observable result
      */
-    private handleError(result?: any) {
+    private handleError() {
         return (error: any): Observable<any> => {
 
             // TODO: Enviar o log de erro para os servidores do Olá
@@ -32,7 +29,7 @@ export class ApplicationHttpInterceptor implements HttpInterceptor {
             this.showErrorMessage(error);
 
             // O aplicativo continua em execução e retorna um resultado vazio
-            return result;
+            return {} as any;
         };
     }
 

@@ -1,15 +1,17 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 
 export class ResourceRequestHelper<Req, Resp> {
 
   private _http: HttpClient;
-  private _baseURL: string;
+  private _apiKey: string;
+  private _baseUrl: string;
   private _resource: string;
 
-  constructor(http: HttpClient, baseURL: string, resource: string) {
+  constructor(http: HttpClient, backend: any, resource: string) {
     this._http = http;
-    this._baseURL = baseURL;
+    this._apiKey = backend.apiKey;
+    this._baseUrl = backend.baseUrl;
     this._resource = resource;
   }
 
@@ -23,7 +25,7 @@ export class ResourceRequestHelper<Req, Resp> {
    * @param data 
    */
   delete(id: number | string): Observable<Resp> {
-    return this._http.delete<Resp>(`${this._baseURL}/${this._resource}/${id}`);
+    return this._http.delete<Resp>(`${this._baseUrl}/${this._resource}/${id}`, this.getHttpOptions());
   }
 
   /**
@@ -32,17 +34,17 @@ export class ResourceRequestHelper<Req, Resp> {
    * @param data 
    */
   private find(data?: Req) {
-    const options = { params: new HttpParams() };
+    const options = this.getHttpOptions();
 
     if (data) {
       Object.keys(data).forEach(key => {
         if (data[key] !== null && data[key] !== undefined) {
-          options.params = options.params.set(key, data[key]);
+          options['params'] = options['params'].set(key, data[key]);
         }
       });
     }
 
-    return this._http.get<Resp>(`${this._baseURL}/${this._resource}`, options as Object);
+    return this._http.get<Resp>(`${this._baseUrl}/${this._resource}`, options as Object);
   }
 
   /**
@@ -54,7 +56,7 @@ export class ResourceRequestHelper<Req, Resp> {
   get(id?: number | string, data?: Req): Observable<Resp> {
 
     if (id) {
-      return this._http.get<Resp>(`${this._baseURL}/${this._resource}/${id}`);
+      return this._http.get<Resp>(`${this._baseUrl}/${this._resource}/${id}`, this.getHttpOptions());
     }
 
     return this.find(data);
@@ -66,7 +68,7 @@ export class ResourceRequestHelper<Req, Resp> {
    * @param data 
    */
   post(data: Req): Observable<Resp> {
-    return this._http.post<Resp>(`${this._baseURL}/${this._resource}`, data);
+    return this._http.post<Resp>(`${this._baseUrl}/${this._resource}`, data, this.getHttpOptions());
   }
 
   /**
@@ -76,7 +78,7 @@ export class ResourceRequestHelper<Req, Resp> {
    * @param data 
    */
   patch(id: number | string, data: Req): Observable<Resp> {
-    return this._http.patch<Resp>(`${this._baseURL}/${this._resource}/${id}`, data);
+    return this._http.patch<Resp>(`${this._baseUrl}/${this._resource}/${id}`, data, this.getHttpOptions());
   }
 
   /**
@@ -85,7 +87,24 @@ export class ResourceRequestHelper<Req, Resp> {
    * @param data 
    */
   put(id: number | string, data: Req): Observable<Resp> {
-    return this._http.put<Resp>(`${this._baseURL}/${this._resource}/${id}`, data);
+    return this._http.put<Resp>(`${this._baseUrl}/${this._resource}/${id}`, data, this.getHttpOptions());
+  }
+
+  /**
+   * Recupera os Options da requisição
+   */
+  private getHttpOptions(): Object {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+
+    httpOptions['params'] = new HttpParams();
+    httpOptions['params'] = httpOptions['params'].set('api_key', this._apiKey);
+
+    return httpOptions;
   }
 
 }
