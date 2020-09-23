@@ -7,17 +7,41 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <style>
+    .center-error {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+
   <!-- 
     Tenta acessar o CDN oficial, caso não consiga, 
     acessa o CDN interno través do atributo 'onerror' do próprio HTML.
     TODO: Trocar as URLs de callback para as URLs da CDN interna quando estiver disponível.
   -->
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans" onerror="this.href='\/\/fonts.googleapis.com/css?family=Open+Sans'" />
-  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons" onerror="this.href='\/\/fonts.googleapis.com/icon?family=Material+Icons'" />
-
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans"
+    onerror="this.href='\/\/fonts.googleapis.com/css?family=Open+Sans'" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"
+    onerror="this.href='\/\/fonts.googleapis.com/icon?family=Material+Icons'" />
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 
 <body class="mat-typography">
   <app-root></app-root>
 </body>
+
+<script>
+  window.onload = () => {
+    if (!window.ng) {
+      if (document.getElementsByTagName('app-root').length > 0) {
+        document.getElementsByTagName('app-root')[0].hidden = true;
+      }
+      document.body.insertAdjacentHTML('afterbegin',
+        `<div class="center-error">
+          <h3>Ops! Ocorreu um erro ao carregar a aplicação.</h3>
+        </div>`);
+    }
+  };
+</script>
