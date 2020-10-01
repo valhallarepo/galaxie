@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+
+// **Be sure that you only ever include this mixin once!**
+@include mat-core();
+
+@import './styles/application-typography.scss';
+@import './styles/themes/blue-dark-theme.scss';
+@import './styles/themes/indigo-light-theme.scss';
+@import './styles/themes/pink-dark-theme.scss';
+@import './styles/themes/yellow-dark-theme.scss';
+
+html, body { height: 100%; width: 100%; }
+body { margin: 0; }
+
+.mat-form-field {
+    margin: 6px;
+}
+
+.mat-raised-button {
+    margin: 6px !important;
+}

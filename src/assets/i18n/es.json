@@ -1,0 +1,26 @@
+{
+  "APP": {
+    "SIDEBAR": {
+      "TITLES": {
+        "HOME": "Página de Inicio",
+        "NOT_MY_HOME": "Pantalla con Tabla"
+      }
+    },
+    "PAGES": {
+      "HOME": {
+        "TITLE": "Esta es la Página de Inicio!"
+      },
+      "NOT_MY_HOME": {
+        "TITLE": "Tabla de Resultados",
+        "TABLE": {
+          "COLUMNS": {
+            "USER_ID": "Id de Usuario",
+            "POST_ID": "Id de la Publicación",
+            "POST_TITLE": "Título de la Publicación",
+            "POST_CONTENT": "Contenido de la Publicación"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+.mat-sidenav-container {
+    width: 100%;
+    top: 64px;
+    bottom: 50px;
+    position: fixed;
+}
+
+.mat-sidenav {
+    min-width: 280px;
+}
+
+.title {
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+form {
+    padding: 0 16px;
+}
+
+.main-container {
+    margin: 16px;
+}
+
+/* Media query */
+@media screen and (max-width: 768px) {
+    .sidenav {
+        min-width: 50%;
+        max-width: 50%;
+    }
+    .sidenav-container {
+        top: 56px;
+    }
+}
+
+/* Media query */
+@media screen and (max-width: 400px) {
+    .sidenav {
+        min-width: 70%;
+        max-width: 70%;
+    }
+    .sidenav-container {
+        top: 56px;
+    }
+}

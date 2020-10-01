@@ -1,0 +1,11 @@
+// -----------------------------------------------------------------------------------------------------
+// @ Typography
+// -----------------------------------------------------------------------------------------------------
+
+// Angular Material typography
+$typography: mat-typography-config(
+    $font-family: 'Open Sans, "Helvetica Neue", sans-serif'
+);
+
+// Setup the typography
+@include angular-material-typography($typography);
