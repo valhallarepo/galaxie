@@ -12,13 +12,7 @@ platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => {
     console.error(err)
 
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        console.log('Erro enviado para análise.');
-      }
-    };
-    // TODO: Adicionar endpoint de log
-    xhttp.open('GET', `https://_URL_?${err}`, true);
-    xhttp.send();
+    // TODO: 
+    // 1. Apresentar um tela para usuário sinalizando a ocorrência de um erro genérico.
+    // 2. Enviar a ocorrencia do erro e os detalhes sobre o erro para um backend a ser definido.
   });
