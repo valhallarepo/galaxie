@@ -1,5 +1,6 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { Interceptor } from '../internal/application-http-interceptor';
@@ -10,6 +11,7 @@ import { MaterialModule } from './material.module';
     declarations: [],
     imports: [
         Interceptor,
+        FlexLayoutModule,
         FormsModule,
         HttpClientModule,
         MaterialModule,
@@ -24,6 +26,7 @@ import { MaterialModule } from './material.module';
         })
     ],
     exports: [
+        FlexLayoutModule,
         FormsModule,
         HttpClientModule,
         MaterialModule,
