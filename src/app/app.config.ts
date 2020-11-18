@@ -1,4 +1,5 @@
 export class AppConfig {
-  public static APP_VERSION: string = '1.0.0';
-  public static DEFAULT_THEME: string = 'theme-blue-dark';
+  // O ESlint indica o uso de 'camelCase' para constantes
+  public static readonly appVersion = '1.0.0';
+  public static readonly defaultTheme = 'theme-blue-dark';
 }

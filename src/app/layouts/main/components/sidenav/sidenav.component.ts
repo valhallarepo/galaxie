@@ -24,7 +24,7 @@ export class SidenavComponent implements OnInit, AfterViewInit {
     private media: MediaMatcher,
     private themeEngine: ThemeEngineHelper) {
     this.mobileQuery = this.media.matchMedia('(max-width: 768px)');
-    this.mobileQuery.addListener(() => this.changeDetectorRef.detectChanges());
+    this.mobileQuery.addEventListener('change', () => this.changeDetectorRef.detectChanges());
   }
 
   ngOnInit(): void {
@@ -33,19 +33,19 @@ export class SidenavComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      this.themeEngine.setGlobalTheme(AppConfig.DEFAULT_THEME);
-      this.form.get('colorTheme').setValue(AppConfig.DEFAULT_THEME);
+      this.themeEngine.setGlobalTheme(AppConfig.defaultTheme);
+      this.form.get('colorTheme').setValue(AppConfig.defaultTheme);
     });
+  }
+
+  themeChange($event: MatRadioChange) {
+    this.themeEngine.setGlobalTheme($event.value);
   }
 
   private createForm() {
     this.form = new FormGroup({
       colorTheme: new FormControl()
     });
-  }
-
-  themeChange($event: MatRadioChange) {
-    this.themeEngine.setGlobalTheme($event.value);
   }
 
 }

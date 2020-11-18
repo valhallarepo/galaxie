@@ -6,12 +6,15 @@ import { Subject } from 'rxjs';
 })
 export class ThemeEngineHelper {
 
-  constructor() { }
-
+  public globalThemeObservable;
   private globalTheme = new Subject<string>();
-  globalThemeObservable = this.globalTheme.asObservable();
+
+  constructor() {
+    this.globalThemeObservable = this.globalTheme.asObservable();
+  }
 
   setGlobalTheme(theme: string): void {
+    this.globalTheme.asObservable();
     this.globalTheme.next(theme);
   }
 

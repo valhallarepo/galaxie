@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { takeUntilDestroy } from './internal/take-until-destroy';
+import takeUntilDestroy from './internal/take-until-destroy';
 import { ThemeEngineHelper } from './shared/helpers/theme-engine-helper';
 
 @Component({
@@ -12,8 +12,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   globalTheme: string;
 
-  constructor(public translate: TranslateService,
-    private themeEngine: ThemeEngineHelper) {
+  constructor(
+    public translate: TranslateService,
+    private themeEngine: ThemeEngineHelper
+  ) {
 
     translate.addLangs(['pt-br', 'en', 'es']);
     translate.setDefaultLang('pt-br');
